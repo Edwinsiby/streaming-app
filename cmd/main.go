@@ -28,5 +28,9 @@ func NewRouter() *gin.Engine {
 	videoRouter := routes.NewVideoRouter()
 	videoRouter.RegisterVideoRoutes(videoGroup)
 
+	liveGroup := router.Group("/live")
+	liveRouter := routes.NewLiveRouter()
+	liveRouter.RegisterLiveRoutes(liveGroup)
+
 	return router
 }

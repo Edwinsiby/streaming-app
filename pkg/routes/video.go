@@ -8,11 +8,11 @@ import (
 
 type VideoRouter struct{}
 
-func NewVideoRouter() *MusicRouter {
-	return &MusicRouter{}
+func NewVideoRouter() *VideoRouter {
+	return &VideoRouter{}
 }
 
-func (m *MusicRouter) RegisterVideoRoutes(router *gin.RouterGroup) {
+func (m *VideoRouter) RegisterVideoRoutes(router *gin.RouterGroup) {
 
 	router.GET("/", handlers.VideoPage)
 	router.POST("/upload/video", handlers.UploadVideo)

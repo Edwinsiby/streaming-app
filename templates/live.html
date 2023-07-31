@@ -1,0 +1,122 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Video Streaming</title>
+    <style>
+        body {
+            background-color: #1f1f1f;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        h1 {
+            color: white;
+            text-align: center;
+            width: 100%;
+            padding: 20px 0;
+        }
+
+        .video-container {
+            margin: 10px;
+            box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: box-shadow 0.3s ease;
+            position: relative;
+            flex: 0 0 calc(33.33% - 20px); 
+            max-width: calc(33.33% - 20px); 
+        }
+
+        .video-container:hover {
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
+        }
+
+        video {
+            width: 100%;
+            height: 100%;
+        }
+
+        a {
+            display: block;
+            color: white;
+            text-align: center;
+            margin-top: 20px;
+            text-decoration: none;
+            padding: 10px;
+            border: 1px solid white;
+            width: 120px;
+        }
+
+        a:hover {
+            background-color: white;
+            color: #1f1f1f;
+        }
+    </style>
+</head>
+<body>
+    <h1>Video Streaming</h1>
+    <div class="video-container" onmouseenter="playVideo(this)" onmouseleave="pauseVideo(this)" onclick="navigateToVideoPage('streetacademy.mp4')">
+        <video controls width="460" height="360">
+            <source src="http://localhost:8080/video/streetacademy.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+    
+    <div class="video-container" onmouseenter="playVideo(this)" onmouseleave="pauseVideo(this)" onclick="navigateToVideoPage('gwagon.mp4')">
+        <video controls width="460" height="360">
+            <source src="http://localhost:8080/video/babsa.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+    
+    <div class="video-container" onmouseenter="playVideo(this)" onmouseleave="pauseVideo(this)" onclick="navigateToVideoPage('babsa.mp4')">
+        <video controls width="460" height="360">
+            <source src="http://localhost:8080/video/gwagon.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+    <div class="video-container" onmouseenter="playVideo(this)" onmouseleave="pauseVideo(this)" onclick="navigateToVideoPage('CityoftheSun.mp4')">
+        <video controls width="460" height="360">
+            <source src="http://localhost:8080/video/CityoftheSun.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+    
+    <div class="video-container" onmouseenter="playVideo(this)" onmouseleave="pauseVideo(this)" onclick="navigateToVideoPage('trippy.mp4')">
+        <video controls width="460" height="360">
+            <source src="http://localhost:8080/video/trippy.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+    
+    <div class="video-container" onmouseenter="playVideo(this)" onmouseleave="pauseVideo(this)" onclick="navigateToVideoPage('idukki-gold.mp4')">
+        <video controls width="460" height="360">
+            <source src="http://localhost:8080/video/idukki-gold.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+
+    <a href="/">Go back to home</a>
+
+    <script>
+        function playVideo(container) {
+            const video = container.querySelector("video");
+            video.play();
+        }
+
+        function pauseVideo(container) {
+            const video = container.querySelector("video");
+            video.pause();
+        }
+
+        function navigateToVideoPage(videoUrl) {
+            window.location.href = "/video/" + encodeURIComponent(videoUrl);
+        }
+    </script>
+</body>
+</html>
+
