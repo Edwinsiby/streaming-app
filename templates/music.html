@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Music Streaming</title>
+    <style>
+        body {
+            background-color: #1f1f1f;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        h1 {
+            color: white;
+            text-align: center;
+            width: 100%;
+            padding: 20px 0;
+        }
+
+        .music-container {
+            margin: 10px;
+            box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: box-shadow 0.3s ease;
+            position: relative;
+            flex: 0 0 calc(25% - 20px); 
+            max-width: calc(25% - 20px);
+            text-align: center; 
+        }
+
+        .music-container:hover {
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
+        }
+
+        .music-container img {
+            width: 100%;
+            height: 200px; 
+            object-fit: cover; 
+        }
+
+        audio {
+            width: 100%;
+        }
+
+        a {
+            display: block;
+            color: white;
+            text-align: center;
+            margin-top: 20px;
+            text-decoration: none;
+            padding: 10px;
+            border: 1px solid white;
+            width: 120px;
+        }
+
+        a:hover {
+            background-color: white;
+            color: #1f1f1f;
+        }
+
+        @media (max-width: 768px) {
+            .music-container {
+                flex-basis: calc(50% - 20px); 
+                max-width: calc(50% - 20px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Music Streaming</h1>
+    <div class="music-container" onmouseenter="playMusic(this)" onmouseleave="pauseMusic(this)" onclick="navigateToMusicPage('song1.mp3')">
+        <img src="/static/images/cityofthesun.png" alt="Song 1">
+        <audio controls>
+            <source src="http://localhost:8080/music/song1.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+    </div>
+    
+    <div class="music-container" onmouseenter="playMusic(this)" onmouseleave="pauseMusic(this)" onclick="navigateToMusicPage('song2.mp3')">
+        <img src="/static/images/deep.png" alt="Song 2">
+        <audio controls>
+            <source src="http://localhost:8080/music/song2.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+    </div>
+    
+    <div class="music-container" onmouseenter="playMusic(this)" onmouseleave="pauseMusic(this)" onclick="navigateToMusicPage('song3.mp3')">
+        <img src="/static/images/idukkigold.png" alt="Song 3">
+        <audio controls>
+            <source src="http://localhost:8080/music/song3.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+    </div>
+    
+    <div class="music-container" onmouseenter="playMusic(this)" onmouseleave="pauseMusic(this)" onclick="navigateToMusicPage('song4.mp3')">
+        <img src="/static/images/gypsy.png" alt="Song 4">
+        <audio controls>
+            <source src="http://localhost:8080/music/song4.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+    </div>
+
+    <div class="music-container" onmouseenter="playMusic(this)" onmouseleave="pauseMusic(this)" onclick="navigateToMusicPage('song4.mp3')">
+        <img src="/static/images/simphony.png" alt="Song 4">
+        <audio controls>
+            <source src="http://localhost:8080/music/song4.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+    </div>
+
+    <div class="music-container" onmouseenter="playMusic(this)" onmouseleave="pauseMusic(this)" onclick="navigateToMusicPage('song4.mp3')">
+        <img src="/static/images/download (1).jpeg" alt="Song 4">
+        <audio controls>
+            <source src="http://localhost:8080/music/song3.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+    </div>
+
+    <div class="music-container" onmouseenter="playMusic(this)" onmouseleave="pauseMusic(this)" onclick="navigateToMusicPage('song4.mp3')">
+        <img src="/static/images/download.jpeg" alt="Song 4">
+        <audio controls>
+            <source src="http://localhost:8080/music/song2.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+    </div>
+
+    <div class="music-container" onmouseenter="playMusic(this)" onmouseleave="pauseMusic(this)" onclick="navigateToMusicPage('song4.mp3')">
+        <img src="/static/images/images.jpeg" alt="Song 4">
+        <audio controls>
+            <source src="http://localhost:8080/music/song1.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+    </div>
+
+    <a href="/">Go back to home</a>
+
+    <script>
+       function playMusic(container) {
+            const audio = container.querySelector("audio");
+            audio.play();
+        }
+
+        function pauseMusic(container) {
+            const audio = container.querySelector("audio");
+            audio.pause();
+        }
+
+        function navigateToMusicPage(musicFileName) {
+            const musicUrl = "http://localhost:8080/music/" + encodeURIComponent(musicFileName);
+            window.location.href = musicUrl;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="/static/images/musiclogo.jpg">
+    <title>zog_stream</title>
+    <style>
+        body {
+            background-color: #1f1f1f;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding-top: 100px;
+        }
+
+        h1 {
+            color: #333;
+        }
+        p {
+            color: #ffffff;
+        }
+        .option {
+            display: inline-block;
+            margin: 20px;
+            cursor: pointer;
+        }
+
+        .option img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <h1>Choose your stream</h1>
+    <div class="option" onclick="redirectTo('/music')">
+        <img src="/static/images/musiclogo.jpg" alt="">
+        <p>Music</p>
+    </div>
+    <div class="option" onclick="redirectTo('/video')">
+        <img src="/static/images/videologo1.jpg" alt="">
+        <p>Video</p>
+    </div>
+
+    <script>
+        function redirectTo(page) {
+            window.location.href = page;
+        }
+    </script>
+</body>
+</html>
