@@ -13,6 +13,6 @@ func NewLiveRouter() *LiveRouter {
 }
 
 func (m *LiveRouter) RegisterLiveRoutes(router *gin.RouterGroup) {
-
 	router.GET("/", handlers.LivePage)
+	router.GET("/", handlers.LiveStreamCam)
 }

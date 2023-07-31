@@ -9,3 +9,7 @@ import (
 func LivePage(c *gin.Context) {
 	c.HTML(http.StatusFound, "live.html", nil)
 }
+
+func LiveStreamCam(c *gin.Context) {
+
+}
