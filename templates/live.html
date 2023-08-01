@@ -59,64 +59,31 @@
 </head>
 <body>
     <h1>Video Streaming</h1>
-    <div class="video-container" onmouseenter="playVideo(this)" onmouseleave="pauseVideo(this)" onclick="navigateToVideoPage('streetacademy.mp4')">
-        <video controls width="460" height="360">
-            <source src="http://localhost:8080/video/streetacademy.mp4" type="video/mp4">
+    <div class="video-container" onclick="navigateToVideoPage('')">
+        <video id="videoElement" controls width="460" height="360">
             Your browser does not support the video tag.
         </video>
     </div>
-    
-    <div class="video-container" onmouseenter="playVideo(this)" onmouseleave="pauseVideo(this)" onclick="navigateToVideoPage('gwagon.mp4')">
-        <video controls width="460" height="360">
-            <source src="http://localhost:8080/video/babsa.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
-    </div>
-    
-    <div class="video-container" onmouseenter="playVideo(this)" onmouseleave="pauseVideo(this)" onclick="navigateToVideoPage('babsa.mp4')">
-        <video controls width="460" height="360">
-            <source src="http://localhost:8080/video/gwagon.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
-    </div>
-    <div class="video-container" onmouseenter="playVideo(this)" onmouseleave="pauseVideo(this)" onclick="navigateToVideoPage('CityoftheSun.mp4')">
-        <video controls width="460" height="360">
-            <source src="http://localhost:8080/video/CityoftheSun.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
-    </div>
-    
-    <div class="video-container" onmouseenter="playVideo(this)" onmouseleave="pauseVideo(this)" onclick="navigateToVideoPage('trippy.mp4')">
-        <video controls width="460" height="360">
-            <source src="http://localhost:8080/video/trippy.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
-    </div>
-    
-    <div class="video-container" onmouseenter="playVideo(this)" onmouseleave="pauseVideo(this)" onclick="navigateToVideoPage('idukki-gold.mp4')">
-        <video controls width="460" height="360">
-            <source src="http://localhost:8080/video/idukki-gold.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
-    </div>
-
-    <a href="/">Go back to home</a>
-
     <script>
-        function playVideo(container) {
-            const video = container.querySelector("video");
-            video.play();
-        }
+        function startVideoStreaming() {
+            const videoElement = document.getElementById('videoElement');
 
-        function pauseVideo(container) {
-            const video = container.querySelector("video");
-            video.pause();
-        }
+            function handleVideoBytes(data) {
+                const blob = new Blob([data], { type: 'video/mp4' });
+                
+                const videoUrl = URL.createObjectURL(blob);
+                videoElement.src = videoUrl;
+                console.log(data);
+            }
+            const sampleWebSocket = new WebSocket('ws://localhost:8080/live/cam');
 
-        function navigateToVideoPage(videoUrl) {
-            window.location.href = "/video/" + encodeURIComponent(videoUrl);
+            sampleWebSocket.binaryType = 'arraybuffer';
+
+            sampleWebSocket.onmessage = function (event) {
+                handleVideoBytes(new Uint8Array(event.data));
+            };
         }
+        startVideoStreaming();
     </script>
 </body>
 </html>
-

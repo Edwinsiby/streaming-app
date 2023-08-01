@@ -6,13 +6,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-type LiveRouter struct{}
-
-func NewLiveRouter() *LiveRouter {
-	return &LiveRouter{}
-}
-
-func (m *LiveRouter) RegisterLiveRoutes(router *gin.RouterGroup) {
-	router.GET("/", handlers.LivePage)
-	router.GET("/", handlers.LiveStreamCam)
+func StreamCamRoutes(router *gin.RouterGroup, handler *handlers.StreamCamHandler) {
+	router.GET("/", handler.LivePage)
+	router.GET("/cam", handler.LiveStreamCam)
 }
