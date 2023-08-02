@@ -1,7 +1,6 @@
 package handlers
 
 import (
-	"fmt"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -22,6 +21,5 @@ func UploadMusic(c *gin.Context) {
 func StreamMusic(c *gin.Context) {
 	musicFileName := c.Param("musicFileName")
 	musicPath := "./music/" + musicFileName
-	fmt.Println(musicPath)
 	c.File(musicPath)
 }
