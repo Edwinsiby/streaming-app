@@ -10,7 +10,6 @@ import (
 )
 
 func main() {
-
 	router := NewRouter()
 	router.Run(":8080")
 }
@@ -43,13 +42,11 @@ func InitializeStreamServer(router *gin.Engine) error {
 	if err != nil {
 		return err
 	}
-
 	StreamCamHandler, err := initializeAuthenticationHandler(StreamCamConn)
 	if err != nil {
 		return err
 	}
 	routes.StreamCamRoutes(router.Group("/live"), StreamCamHandler)
-
 	return nil
 }
 
