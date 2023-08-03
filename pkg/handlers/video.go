@@ -1,7 +1,9 @@
 package handlers
 
 import (
+	"fmt"
 	"net/http"
+	"strconv"
 	"stream/pkg/models"
 	"stream/pkg/repository"
 
@@ -26,7 +28,17 @@ func UploadVideo(c *gin.Context) {
 }
 
 func StreamVideo(c *gin.Context) {
-	videoFileName := c.Param("videoFileName")
+	sectionID := c.Param("sectionID")
+
+	sectionIDInt, err := strconv.Atoi(sectionID)
+	if err != nil {
+		fmt.Println("error", err)
+	}
+
+	videoFileName, err := repository.FindBySectionID(sectionIDInt)
+	if err != nil {
+		fmt.Println("Video not found", err)
+	}
 	videoPath := "./video/" + videoFileName
 
 	c.File(videoPath)

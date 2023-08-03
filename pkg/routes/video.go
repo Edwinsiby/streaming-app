@@ -16,5 +16,5 @@ func (m *VideoRouter) RegisterVideoRoutes(router *gin.RouterGroup) {
 
 	router.GET("/", handlers.VideoPage)
 	router.POST("/upload/video", handlers.UploadVideo)
-	router.GET("/:videoFileName", handlers.StreamVideo)
+	router.GET("/:sectionID", handlers.StreamVideo)
 }
