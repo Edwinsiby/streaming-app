@@ -1,11 +1,9 @@
-package handlers
+package video
 
 import (
 	"fmt"
 	"net/http"
 	"strconv"
-	"stream/pkg/models"
-	"stream/pkg/repository"
 
 	"github.com/gin-gonic/gin"
 )
@@ -15,12 +13,12 @@ func VideoPage(c *gin.Context) {
 }
 
 func UploadVideo(c *gin.Context) {
-	var input models.Video
+	var input Video
 	if err := c.ShouldBindJSON(&input); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
-	if err := repository.Create(&input); err != nil {
+	if err := Create(&input); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
@@ -35,7 +33,7 @@ func StreamVideo(c *gin.Context) {
 		fmt.Println("error", err)
 	}
 
-	videoFileName, err := repository.FindBySectionID(sectionIDInt)
+	videoFileName, err := FindBySectionID(sectionIDInt)
 	if err != nil {
 		fmt.Println("Video not found", err)
 	}

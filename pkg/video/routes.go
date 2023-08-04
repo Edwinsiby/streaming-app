@@ -1,8 +1,6 @@
-package routes
+package video
 
 import (
-	"stream/pkg/handlers"
-
 	"github.com/gin-gonic/gin"
 )
 
@@ -14,7 +12,7 @@ func NewVideoRouter() *VideoRouter {
 
 func (m *VideoRouter) RegisterVideoRoutes(router *gin.RouterGroup) {
 
-	router.GET("/", handlers.VideoPage)
-	router.POST("/upload/video", handlers.UploadVideo)
-	router.GET("/:sectionID", handlers.StreamVideo)
+	router.GET("/", VideoPage)
+	router.POST("/upload/video", UploadVideo)
+	router.GET("/:sectionID", StreamVideo)
 }

@@ -5,6 +5,7 @@ import (
 	"stream/pkg/handlers"
 	"stream/pkg/music"
 	"stream/pkg/routes"
+	"stream/pkg/video"
 
 	"github.com/gin-gonic/gin"
 	"google.golang.org/grpc"
@@ -27,7 +28,7 @@ func NewRouter() *gin.Engine {
 	musicRouter.RegisterMusicRoutes(musicGroup)
 
 	videoGroup := router.Group("/video")
-	videoRouter := routes.NewVideoRouter()
+	videoRouter := video.NewVideoRouter()
 	videoRouter.RegisterVideoRoutes(videoGroup)
 
 	err := InitializeStreamServer(router)
