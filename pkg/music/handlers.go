@@ -20,6 +20,6 @@ func UploadMusic(c *gin.Context) {
 
 func StreamMusic(c *gin.Context) {
 	musicFileName := c.Param("musicFileName")
-	musicPath := "./music/" + musicFileName
+	musicPath := "./static/music/" + musicFileName
 	c.File(musicPath)
 }

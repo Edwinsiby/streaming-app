@@ -37,7 +37,7 @@ func StreamVideo(c *gin.Context) {
 	if err != nil {
 		fmt.Println("Video not found", err)
 	}
-	videoPath := "./video/" + videoFileName
+	videoPath := "./static/video/" + videoFileName
 
 	c.File(videoPath)
 }
