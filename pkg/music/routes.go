@@ -1,8 +1,6 @@
-package routes
+package music
 
 import (
-	"stream/pkg/handlers"
-
 	"github.com/gin-gonic/gin"
 )
 
@@ -13,7 +11,7 @@ func NewMusicRouter() *MusicRouter {
 }
 
 func (m *MusicRouter) RegisterMusicRoutes(router *gin.RouterGroup) {
-	router.GET("/", handlers.MusicPage)
-	router.POST("/upload/image", handlers.UploadMusic)
-	router.GET("/:musicFileName", handlers.StreamMusic)
+	router.GET("/", MusicPage)
+	router.POST("/upload/image", UploadMusic)
+	router.GET("/:musicFileName", StreamMusic)
 }

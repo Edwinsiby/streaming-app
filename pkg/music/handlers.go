@@ -1,4 +1,4 @@
-package handlers
+package music
 
 import (
 	"net/http"

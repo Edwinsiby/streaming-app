@@ -19,6 +19,6 @@ func ConnectDatabase() (*gorm.DB, error) {
 		return nil, fmt.Errorf("failed to connect to database: %w", err)
 	}
 	DB = db
-	DB.AutoMigrate(models.Music{}, models.Video{})
+	DB.AutoMigrate(models.Video{})
 	return db, nil
 }

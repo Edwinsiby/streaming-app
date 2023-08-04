@@ -3,6 +3,7 @@ package main
 import (
 	"log"
 	"stream/pkg/handlers"
+	"stream/pkg/music"
 	"stream/pkg/routes"
 
 	"github.com/gin-gonic/gin"
@@ -19,10 +20,10 @@ func NewRouter() *gin.Engine {
 	router.LoadHTMLGlob("templates/*.html")
 	router.Static("/static", "./static")
 
-	router.GET("/", handlers.IndexPage)
+	router.GET("/", music.IndexPage)
 
 	musicGroup := router.Group("/music")
-	musicRouter := routes.NewMusicRouter()
+	musicRouter := music.NewMusicRouter()
 	musicRouter.RegisterMusicRoutes(musicGroup)
 
 	videoGroup := router.Group("/video")
