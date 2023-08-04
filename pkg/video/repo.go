@@ -39,6 +39,13 @@ func Create(input *Video) error {
 	return DB.Create(input).Error
 }
 
+func Update(input *Video) error {
+	if err := DB.Model(&Video{}).Where("section = ?", input.Section).Updates(input).Error; err != nil {
+		return err
+	}
+	return nil
+}
+
 func FindBySectionID(input int) (string, error) {
 	var video Video
 	result := DB.Where("section =?", input).First(&video)

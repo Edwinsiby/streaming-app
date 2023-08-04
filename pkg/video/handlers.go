@@ -18,6 +18,16 @@ func UploadVideo(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
+	videoFileName, err := FindBySectionID(input.Section)
+	if err != nil {
+		fmt.Println("Video not found", err)
+	}
+	if videoFileName != "" {
+		if err := Update(&input); err != nil {
+			c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+			return
+		}
+	}
 	if err := Create(&input); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
