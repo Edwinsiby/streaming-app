@@ -1,4 +1,4 @@
-package utils
+package video
 
 import "github.com/spf13/viper"
 

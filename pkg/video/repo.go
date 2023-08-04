@@ -8,8 +8,6 @@ import (
 
 	"gorm.io/gorm"
 
-	config "stream/pkg/config"
-
 	"gorm.io/driver/postgres"
 )
 
@@ -17,7 +15,7 @@ var DB *gorm.DB
 var err error
 
 func ConnectDatabase() (*gorm.DB, error) {
-	config, err := config.LoadConfig("./")
+	config, err := LoadConfig("./")
 	db, err := gorm.Open(postgres.Open(config.DSN), &gorm.Config{})
 	if err != nil {
 		return nil, fmt.Errorf("failed to connect to database: %w", err)
