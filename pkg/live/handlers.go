@@ -7,7 +7,7 @@ import (
 	"log"
 	"net/http"
 
-	"stream/pb"
+	pb "stream/pkg/live/pb"
 
 	"github.com/gin-gonic/gin"
 	"github.com/gorilla/websocket"
