@@ -2,9 +2,8 @@ package main
 
 import (
 	"log"
-	"stream/pkg/handlers"
+	"stream/pkg/live"
 	"stream/pkg/music"
-	"stream/pkg/routes"
 	"stream/pkg/video"
 
 	"github.com/gin-gonic/gin"
@@ -48,10 +47,10 @@ func InitializeStreamServer(router *gin.Engine) error {
 	if err != nil {
 		return err
 	}
-	routes.StreamCamRoutes(router.Group("/live"), StreamCamHandler)
+	live.StreamCamRoutes(router.Group("/live"), StreamCamHandler)
 	return nil
 }
 
-func initializeAuthenticationHandler(cc *grpc.ClientConn) (*handlers.StreamCamHandler, error) {
-	return handlers.NewAuthenticationHandler(cc), nil
+func initializeAuthenticationHandler(cc *grpc.ClientConn) (*live.StreamCamHandler, error) {
+	return live.NewAuthenticationHandler(cc), nil
 }
