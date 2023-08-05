@@ -60,8 +60,7 @@
 <body>
     <h1>Video Streaming</h1>
     <div class="video-container" onmouseenter="playVideo(this)" onmouseleave="pauseVideo(this)" onclick="navigateToVideoPage('1')">
-        <video controls width="460" height="360">
-            <source src="http://localhost:8080/video/1" type="video/mp4">
+        <video  id="videoPlayer"   controls width="460" height="360">
             Your browser does not support the video tag.
         </video>
     </div>
@@ -101,7 +100,25 @@
     </div>
 
     <a href="/">Go back to home</a>
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest/dist/hls.min.js"></script>
 
+    <script>
+        window.addEventListener('load', function() {
+            const videoElement = document.getElementById('videoPlayer');
+            const hls = new Hls();
+
+            if (Hls.isSupported()) {
+                const hlsEndpoint = '/video/hls/2';
+                hls.loadSource(hlsEndpoint);
+                hls.attachMedia(videoElement);
+            } else if (videoElement.canPlayType('application/vnd.apple.mpegurl')) {
+                console.error('HLS is not supported on this browser.');
+            } else {
+                console.error('HTML5 video player not supported.');
+            }
+            videoElement.append()
+        });
+    </script>
     <script>
         function playVideo(container) {
             const video = container.querySelector("video");
@@ -117,6 +134,8 @@
             window.location.href = "/video/" + encodeURIComponent(videoUrl);
         }
     </script>
+    
+   
 </body>
 </html>
 
